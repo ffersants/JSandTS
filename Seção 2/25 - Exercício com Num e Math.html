@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        num = prompt("Digite um número: ");
+        num = parseFloat(num);
+        
+        document.write(`<h2> Seu número é ${num}</h2>`);
+
+        document.write(`${num} é inteiro: ${Number.isInteger(num)} <br>`);
+        document.write(`${num} é NaN: ${Number.isNaN(num)} <br>`);
+        document.write(`${num} arrendodado para baixo: ${Math.floor(num)} <br>`);
+        document.write(`${num} arrendodado para cima: ${Math.ceil(num)} <br>`);
+        document.write(`${num} com duas casas decimais: ${num.toFixed(2)} <br>`);
+
+
+        
+        //document.write(`O numero eh ${num}`)
+
+    </script>
+</body>
+</html>
