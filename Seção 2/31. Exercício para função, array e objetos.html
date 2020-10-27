@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+</style>
+<body>
+    <form>
+
+        <div>
+            Nome: <input required type="text">
+        </div>
+        <div>
+            Sobrenome: <input required type="text" id="sobrenome">
+        </div>
+        <div>
+            Peso: <input required type="number" id="peso">
+        </div>
+        <div>
+            Altura: <input type="number" id="altura">
+        </div>
+        <button id="btn">Enviar</button>
+    </form>
+
+    <div id="show">
+
+    </div>
+
+    <script>
+
+        inputsContent = Array();
+
+        document.getElementById("btn").addEventListener("click", () => {
+            event.preventDefault();
+
+            getInputs();
+            
+            title = ["Nome:" , "Sobrenome: ", "Peso: ", "Altura: "];
+            show = document.getElementById("show");
+            i = 0;
+            inputsContent.forEach(element => {
+                show.innerHTML += `<h2> ${title[i++]}  ${element} </h2>`;               
+            });
+        })
+
+        function getInputs(){
+            inputs = document.querySelectorAll("input");
+            for(a of inputs){
+                inputsContent.push(a.value)
+            }
+        }
+    </script>
+</body>
+</html>
