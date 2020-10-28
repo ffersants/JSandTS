@@ -34,27 +34,36 @@
     </div>
 
     <script>
-
         inputsContent = Array();
+        pessoas = Array()
+        show = document.getElementById("show");
 
-        document.getElementById("btn").addEventListener("click", () => {
+        //form = document.querySelector("form");
+        document.querySelector("form").addEventListener("submit", () => {
             event.preventDefault();
-
-            getInputs();
             
-            title = ["Nome:" , "Sobrenome: ", "Peso: ", "Altura: "];
-            show = document.getElementById("show");
-            i = 0;
-            inputsContent.forEach(element => {
-                show.innerHTML += `<h2> ${title[i++]}  ${element} </h2>`;               
-            });
+            getInputs();
+            show.innerHTML = " ";
+            showAll();
+            //resete
+            pessoas.push(inputsContent);
+            inputsContent = [];
+            
         })
 
         function getInputs(){
             inputs = document.querySelectorAll("input");
-            for(a of inputs){
-                inputsContent.push(a.value)
+            for(input of inputs){
+                inputsContent.push(input.value)
             }
+        }
+
+        function showAll(){
+            title = ["Nome:" , "Sobrenome: ", "Peso: ", "Altura: "];
+            i = 0;
+            inputsContent.forEach(element => {
+                show.innerHTML += `<h2> ${title[i++]}  ${element} </h2>`;               
+            });
         }
     </script>
 </body>
