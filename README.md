@@ -44,4 +44,3 @@ const letras = ['A', 'B', 'C', 'D', 'E', 'F'];
 let [firstLetter, , thirdLetter, fourthLetter, ...rest] = letras;
 console.log(thirdLetter);
 ```
-teset
