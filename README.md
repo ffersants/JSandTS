@@ -34,18 +34,14 @@ function hoistingName(){
 Este procedimento consiste em extrair o valor em cada índice de um array para variáveis
 ```javascript
 const letras = ['A', 'B', 'C', 'D', 'E', 'F'];
+let [firstLetter, secondLetter, thirdLetter, ...rest] = letras;
+console.log(firstLetter);
 
-    let [firstLetter, secondLetter, thirdLetter, ...rest] = letras;
-    console.log(firstLetter);
-```
+//Para "saltar" alguns indíces do array, atribuindo a nenhuma variável o dado no índice pulado
 
-Para "saltar" alguns indíces do array, atribuindo a nenhuma variável o dado no índice pulado
-
-```javascript
 const letras = ['A', 'B', 'C', 'D', 'E', 'F'];
- 
-    ///esse espaço abaixo indica que desejo pular o valor naquele índice do array
-    let [firstLetter, , thirdLetter, fourthLetter, ...rest] = letras;
-    console.log(thirdLetter);
+//esse espaço abaixo indica que desejo pular o valor naquele índice do array
+let [firstLetter, , thirdLetter, fourthLetter, ...rest] = letras;
+console.log(thirdLetter);
 ```
-
+teset
