@@ -5,23 +5,23 @@ Dentro das variáveis <i>var, let e const</i>, somente variáveis declaradas com
 <br>
 No entanto, a variável é apenas inicializada e nenhum valor lhe é atribuído. Portanto, ela é tida como undefined,
 
-```java
-console.log(nome);/cannot access "nome" before initialization
+```javascript
+console.log(nome);//cannot access "nome" before initialization
 let nome = 'fernando';
 
-console.log(idade);/undefined
+console.log(idade);//undefined
 var idade = 20;
 ```
 
 Declarar uma variável com a keyword <strong>var</strong>, esperando o evento de hoisting é o mesmo que isso...
-```java
+```javascript
 var idade;
 console.log(idade);
 idade = 20;
 ```
 
 Sendo assim, a melhorar maneira de provocar hoisting em uma variável, é declarando ela dentro de uma simples função que, nativamente, sofre o hoisting
-```java
+```javascript
 hoistingName()
 console.log(nome);//fernando
 
@@ -32,7 +32,7 @@ function hoistingName(){
 
 <h1>Rest: Atribuição via destruturação</h1>
 Este procedimento consiste em extrair o valor em cada índice de um array para variáveis
-```java
+```javascript
 const letras = ['A', 'B', 'C', 'D', 'E', 'F'];
 
     let [firstLetter, secondLetter, thirdLetter, ...rest] = letras;
@@ -41,7 +41,7 @@ const letras = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 Para "saltar" alguns indíces do array, atribuindo a nenhuma variável o dado no índice pulado
 
-```java
+```javascript
 const letras = ['A', 'B', 'C', 'D', 'E', 'F'];
  
     ///esse espaço abaixo indica que desejo pular o valor naquele índice do array
