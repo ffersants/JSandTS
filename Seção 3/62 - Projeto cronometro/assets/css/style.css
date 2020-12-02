@@ -38,28 +38,37 @@ form input {
   padding: 0 20px;
 }
 
-form input:focus {
+input:focus {
   outline: 1px solid var(--primary-color);
 }
 
-form button {
+button {
   border: none;
   background: var(--primary-color);
   color: #fff;
   font-size: 18px;
   font-weight: 700;
-  height: 50px;
+  height: 60px;
   cursor: pointer;
   margin-top: 30px;
+  border-radius: 0.8em;
 }
 
-form button:hover {
+button:hover {
   background: var(--primary-color-darker);
 }
-.relogio {
+#relogio {
   font-size: 3em;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  
 }
 
 .pausado {
   color: red;
+}
+
+button:disabled{
+  background-color: rgb(179, 175, 175);
+  cursor: default;
 }
