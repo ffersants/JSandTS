@@ -1,6 +1,7 @@
 function main(birthYear, callback){
 	age = 2020 - birthYear;
-	return callback(age);
+	callback(age);
+	console.log('Fim')
 }
 
 main(2000, (result)=>{
