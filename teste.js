@@ -1,7 +1,11 @@
-lista = ['item1', 'item2'];
+function  Objeto(id, nome, cor) {
+    this.id = id;
+    this.nome = nome;
+    this.cor = cor;
+    this.todasInfo = function(){
+        return `${this.id}, ${this.nome}, ${this.cor}`
+    }
+}
 
-lista.forEach(function(valor, index, arrei){
-    console.log("Valor: " + valor)
-    console.log("Index: " + index)
-    console.log("Array: " + arrei); 
-});
+dado = new Objeto(123, 'Dado', 'Verde');
+console.log(dado.todasInfo())
