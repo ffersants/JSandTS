@@ -55,5 +55,12 @@ console.log(pessoa)
         Object.freeze(this);
     }
     //FALTANDO UM PARÂMETRO
-    ditecadmin = new Admin('admin', 'adminadmin');
+    ditecadmin = new Admin('admin', 'adminadmin', 2);
+}
+
+{
+    array1 = ['Fulano', 'Beltrano'];
+    Object.freeze(array1);
+    array1.unshift('Siclano');
+    console.log(array1)
 }
