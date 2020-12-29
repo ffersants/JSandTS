@@ -1,3 +1,3 @@
 func = {}
 
-console.log(func)
+console.log(func.__proto__)
