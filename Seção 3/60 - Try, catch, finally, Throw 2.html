@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(data){
+            if(data && !(data instanceof Date)){
+                throw new Error("Parâmetro inválido. Realizando uma nova tentativa instanciando date.")
+            } else if(!data){
+                dataCriada = new Date();
+                return dataCriada.toLocaleDateString("pt-br", {
+                    dateStyle: "long"
+                }) + " " + dataCriada.toLocaleTimeString("pt-br", {
+                    timeStyle: "short"
+                })
+            } else{
+                console.log("Pârametro válido!")
+                return data.toLocaleDateString("pt-br", {
+                    dateStyle: "long"
+                }) + " " + data.toLocaleTimeString("pt-br", {
+                    timeStyle: "short"
+                })
+            }
+        }
+
+try{
+    a = main(new Date())
+} catch(e){
+    console.log(e)
+    try{
+        a = main();
+    } catch(e2){
+        console.log(e2)
+    }
+} finally{
+    console.log(a)
+}
+
+
+
+</script>
+</body>
+</html>
