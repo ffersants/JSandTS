@@ -1,7 +1,8 @@
 meuArray = [25, 13, 45, 18, 19];
 
 meuArrayReduced = meuArray.reduce((acumulador, valor, index, array) => {
-	return acumulador += valor;
+    console.log(acumulador)
+    return acumulador += valor;
 }, 0);
 
 console.log(meuArrayReduced)
