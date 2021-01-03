@@ -29,21 +29,62 @@ function recebeCpf(cpf){
     //D - qualquer valor que não seja número
     //g - faz a busca em toda a string
     cpf = cpf.replace(/\D/g, "").split('').map(num => Number.parseInt(num));
-    
-    loopControler = 10;
-    
-    somaDaMultiplicacao = cpf.slice(0, 9).reduce((acumulador, valor, index, array) => {
-        acumulador += loopControler * valor;
-        loopControler--;
-        return acumulador
-    }, 0)
 
-    getDigit = function(somaDaMultiplicacao){
-        return 11 - (somaDaMultiplicacao % 11)
+    
+
+
+    decimoDigito = pegaDigito(cpf, 10);
+    decimoPrimeiroDigito = pegaDigito(cpf, 11);
+
+    console.log(verificaValidadeDoCpf(decimoDigito, 9))
+    console.log(verificaValidadeDoCpf(decimoPrimeiroDigito, 10))
+
+    function verificaValidadeDoCpf(digito, posicao){
+        if(digito>9){
+            digito = 0
+        } 
+        console.log(digito)
+        console.log(cpf)
+        if(cpf[posicao] === digito){
+            return "CPF valido!"
+        } else{
+            return "CPF invalido!"
+        }
     }
 
+    function pegaDigito(cpf, digitoDaVez){
+    
+        totalSoma = 0
+        
+        if(digitoDaVez === 10){
+            loopControler = 10;
+            digit = cpf.slice(0, 9).reduce((acumulador, valor, index, array) => {            
+                acumulador += loopControler * valor;
+                loopControler--;
+                totalSoma = acumulador
+                return totalSoma
+            }, 0)
+            
+            return 11 - (totalSoma % 11);
 
-    console.log(getDigit(somaDaMultiplicacao))
+        } if(digitoDaVez === 11){
+            
+            loopControler = 11;
+            digit = cpf.slice(0, 10).reduce((acumulador, valor, index, array) => {            
+                acumulador += loopControler * valor;
+                loopControler--;
+                totalSoma = acumulador
+                return totalSoma
+            }, 0)
+            return 11 - (totalSoma % 11);
+
+        } else{
+            throw new Error("Apenas os digitos 10 ou 11 sao esperados.")
+        }
+         
+    }
+
+    //decimoPrimeiroDigito = 
 }
 
 recebeCpf("070.080.101-41")
