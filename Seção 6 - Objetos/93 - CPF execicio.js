@@ -28,10 +28,12 @@ A validação do CPF é realizada da seguinte forma:
 function recebeCpf(cpf){
     //D - qualquer valor que não seja número
     //g - faz a busca em toda a string
-    cpf = cpf.replace(/\D/g, "").split('').map(num => Number.parseInt(num));
-
-    
-
+    //deixa somente os numeros - cria um array - converte cada item do array em numero
+    //cpf = cpf.replace(/\D/g, "").split('').map(num => Number.parseInt(num));
+    //deixasomente os numeros
+    cpf = cpf.replace(/\D/g, "");
+    //transforma a cadeia de numero em array
+    cpf = Array.from(cpf)
 
     decimoDigito = pegaDigito(cpf, 10);
     decimoPrimeiroDigito = pegaDigito(cpf, 11);
@@ -40,11 +42,10 @@ function recebeCpf(cpf){
     console.log(verificaValidadeDoCpf(decimoPrimeiroDigito, 10))
 
     function verificaValidadeDoCpf(digito, posicao){
-        if(digito>9){
+        if(digito > 9){
             digito = 0
         } 
-        console.log(digito)
-        console.log(cpf)
+       
         if(cpf[posicao] === digito){
             return "CPF valido!"
         } else{

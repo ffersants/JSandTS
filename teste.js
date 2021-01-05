@@ -1,28 +1,15 @@
-{
-    a1 = [`valor1`, `valor2`, `valor3`];
-
-    a2 = a1;
-
-    console.log(a1)
-    console.log(a2)
-
-    a2.push(`a4`)
-
-
-    console.log(a1)
-    console.log(a2)
+pessoa1 = {
+    nome: `Fernando`,
+    idade: 32,
+    profissao: `Software Developer`
 }
 
-{
-    a1 = [`valor1`, `valor2`, `valor3`];
-    a2 = [...a1]
+pessoa1Obj = Object.entries(pessoa1)
+pessoa2Arr = Array.from(pessoa1)
 
-    console.log(a1)
-    console.log(a2)
+console.log(pessoa1Obj)
+var [nome, idade, profissao] = pessoa1Obj
 
-    a2.push(`a4`)
-
-
-    console.log(a1)
-    console.log(a2)
-}
+console.log(nome)
+console.log(idade)
+console.log(profissao)
