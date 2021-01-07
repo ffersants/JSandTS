@@ -1,28 +1,16 @@
-{
-    a1 = [`valor1`, `valor2`, `valor3`];
+class Carro{
+    
+    constructor(modelo){
+        this.modelo = modelo;
+        this.kmRodados = 0;
+    }
+    
+    set quilometragem(valor){
+        this.kmRodados = valor
+    }
 
-    a2 = a1;
-
-    console.log(a1)
-    console.log(a2)
-
-    a2.push(`a4`)
-
-
-    console.log(a1)
-    console.log(a2)
 }
 
-{
-    a1 = [`valor1`, `valor2`, `valor3`];
-    a2 = [...a1]
-
-    console.log(a1)
-    console.log(a2)
-
-    a2.push(`a4`)
-
-
-    console.log(a1)
-    console.log(a2)
-}
+vectra = new Carro('vectra')
+vectra = 50;
+console.log(vectra)
