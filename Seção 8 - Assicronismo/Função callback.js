@@ -39,3 +39,8 @@
         })
       })
 }
+
+//mas quanto mais cresce o numero de funcoes a serem executadas apos outra,
+//o encadeamento de funcoes callbacks como parametros acaba criando uma arvore de natal e 
+//deixando o codigo nada legivel...
+//para resolver tal questao, foi implementado a promise
