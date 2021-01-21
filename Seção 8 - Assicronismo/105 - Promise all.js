@@ -8,7 +8,7 @@ var total = 0;
 function criaPromises(valor, time) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            total = (Number(time) + Number(total))
+            //o valor de time é passado como um objeto do tipo array com os três valores de time
             resolve(total)
         }, time)
     })
@@ -21,5 +21,8 @@ let promises = [
 ]
 
 Promise.all(promises).then((total) => {
-    console.log(`Todas as promises terminaram de executar e isso demorou um total de ${total} segundos!`)
+    total = total.reduce((acumulador, valor) => {
+        return acumulador += valor
+    }, 0)
+    console.log(`Todas as promises terminaram de executar e isso demorou um total de ${(total / 1000).toFixed(2)} segundos!`)
 })
