@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        body {
+            background-image: url("https://waterbearlearning.com/wp-content/uploads/2019/10/water_bear_learning_video_music3.jpg");
+            display: flex;
+        }
+
+        .container{
+            width: 40vw;
+            height: 30vh;
+            background-color: rgb(230, 238, 238);
+            margin-left: auto;           
+            margin-right: auto;
+            margin-top: 2em;
+            border-radius: 2em; 
+            box-shadow: 0.5em 0.5em 1em rgb(104, 104, 104);
+            text-align: center;
+            padding: 1.5em;
+        }
+        input{
+            border: none; 
+            border-radius: 0.2em;            
+        }
+        input:focus{
+            transition: all 0.5s;
+            box-shadow: 0.2em 0.2em 1em grey;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Find lyrics</h1>
+        <div class="form">
+            <div>
+                <label for="artist">Artist</label>
+                <input type="text" id="artist">
+            </div>
+            <div>
+                <label for="song">Song</label>
+                <input type="text" id="song">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //xhr é uma abreviação comum na web para XMLHttpRequest
+
+//chama o construtor para poder usar os métodos
+    function acessaApi(){
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', "https://anapioficeandfire.com/api/characters/583", true)
+            xhr.send()
+            xhr.addEventListener('load', () => resolve(xhr.responseText))
+            console.log('tá síncrono')
+        })
+    }
+
+    acessaApi()
+    .then((answer) =>{
+        console.log(answer)
+    })
+    
+    </script>
+</body>
+</html>
