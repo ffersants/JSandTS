@@ -20,12 +20,14 @@
         body {
             background-image: url("https://waterbearlearning.com/wp-content/uploads/2019/10/water_bear_learning_video_music3.jpg");
             display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container{
             width: 40vw;
             height: 30vh;
-            background-color: rgb(230, 238, 238);
+            background-color: rgb(192, 192, 192);
             margin-left: auto;           
             margin-right: auto;
             margin-top: 2em;
@@ -33,17 +35,77 @@
             box-shadow: 0.5em 0.5em 1em rgb(104, 104, 104);
             text-align: center;
             padding: 1.5em;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
         }
+
+
         input{
             border: none; 
-            border-radius: 0.2em;            
+            border-radius: 0.2rem;      
+            padding: 0.6rem;  
+            font-size: 1rem;    
         }
         input:focus{
             transition: all 0.5s;
-            box-shadow: 0.2em 0.2em 1em grey;
+            box-shadow: 0.2rem 0.2rem 1rem grey;
             border: none;
             outline: none;
         }
+
+        .form{
+            display: flex;
+            border: 2px blue solid;
+            padding-top: 1rem;
+        }
+
+        .form-input:nth-child(1){
+            margin-right: 1.5rem;
+        }
+
+        .form-input div{
+            text-align: left;
+            font-size: 1.3rem;
+        }
+
+        .btn{
+            padding: 0.5rem;
+        }
+        button{
+            padding: .3rem .7rem .2rem .7rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 0.8rem;
+            transition: box-shadow 0.2s;
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: rgba(236, 233, 233, 0.849);
+            box-shadow: 0.2rem 0.2rem 1rem grey;
+        }
+
+        button:focus{
+            border: none;
+            outline: none;
+        }
+        button:active{
+            background-color: rgba(255, 255, 255, 0.849);
+
+        }
+
+        #error{
+            display: none;
+            text-align: center;
+            align-items: center;
+            background-color: rgb(247, 163, 85);
+            width: 30%;
+            height: 20%;
+            font-size: 180%;
+            margin-top: 2em;
+            padding: auto;
+        }
+    
     </style>
 </head>
 <body>
@@ -51,35 +113,87 @@
     <div class="container">
         <h1>Find lyrics</h1>
         <div class="form">
-            <div>
-                <label for="artist">Artist</label>
+            <div class="form-input">
+               <div>
+                    <label for="artist">Artist</label>
+               </div>
                 <input type="text" id="artist">
             </div>
-            <div>
-                <label for="song">Song</label>
+            <div class="form-input">
+                <div>
+                    <label for="artist">Song</label> 
+                </div>
                 <input type="text" id="song">
             </div>
         </div>
+        <div class="btn">
+            <button>Search</button>
+        </div>
+
+    </div>
+    
+    <div id="error">
+        <p>
+            Não foi possível encontrar a música pesquisada...<br>Tente novamente
+        </p>
+    </div>
+
+    <div id="letra" style="background-color: white; margin-top: 2em; border-radius:1em;">
+
     </div>
 
     <script>
+        document.querySelector("button").addEventListener("click", () => {
+            song = document.getElementById("song").value;
+            artist = document.getElementById("artist").value;
+            if(song == '' || artist == '') {
+                console.log("inputs vaizios")
+                return;
+            }
+
+            acessaApi(song, artist)
+                .then((answer) =>{
+                    document.getElementById("error").style.display = "none";
+
+                    showLyrics(answer)
+                })
+                .catch((error) => {
+                    document.getElementById("letra").innerHTML = "" 
+                    document.getElementById("error").style.display = "flex";
+                    console.log(error)
+                })
+        })
         //xhr é uma abreviação comum na web para XMLHttpRequest
 
 //chama o construtor para poder usar os métodos
-    function acessaApi(){
+    function acessaApi(song, artist){
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest()
-            xhr.open('GET', "https://anapioficeandfire.com/api/characters/583", true)
+            xhr.open('GET', `https://api.lyrics.ovh/v1/${artist}/${song}`, true)
             xhr.send()
-            xhr.addEventListener('load', () => resolve(xhr.responseText))
-            console.log('tá síncrono')
+            xhr.addEventListener('load', (content) => {
+                let xhrRequest = content.target
+                console.log(xhrRequest)
+                if(xhrRequest.status >= 200 && xhrRequest.status <= 299 && xhrRequest.responseText !== '{"lyrics":""}'){
+                    resolve(xhr.responseText)
+                } else{
+                    reject('Resposta vazia')
+                }
+            })
         })
     }
 
-    acessaApi()
-    .then((answer) =>{
-        console.log(answer)
-    })
+    function showLyrics(letra){
+        showLetra = document.getElementById("letra");
+        console.log(letra)
+        letra = letra
+        .replace('{"lyrics":"', '')
+        .replace('"}', '')
+        .replace(/(?:\\[rn])+/g, "<br>")
+        console.log(letra)
+        showLetra.innerHTML = letra;
+    }
+    
     
     </script>
 </body>
