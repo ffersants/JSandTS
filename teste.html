@@ -20,7 +20,9 @@
         const go = document.getElementById("go")
         go.addEventListener("click", async() => {
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://localhost:3333/ongs', true);
+            xhr.open('GET', 'http://localhost:5500/ongs', true);
+            xhr.setRequestHeader('Access-Control-Allow-Origin','http://127.0.0.1:5500/otrs')
+            xhr.setRequestHeader('Content-Type','text/html; charset=utf-8')
             xhr.send()
             console.log(xhr.responseText)
         })
