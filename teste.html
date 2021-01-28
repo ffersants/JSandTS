@@ -18,19 +18,23 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
         const go = document.getElementById("go")
-        go.addEventListener("click", () => main())
+        go.addEventListener("click", () => {
+          fetch('http://10.93.83.246:3333/ongs')
+            .then( e => e.text())
+            .then( text => console.log(text))
+        })
 
-        function main(){
+        // function main(){
          
-            return new Promise((resolve, reject) => {
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', 'http://10.93.83.246:3333/ongs', true);
-              xhr.send()
-              xhr.addEventListener('load', (e) => console.log(e.target.response))
-              }
-            )
+        //     return new Promise((resolve, reject) => {
+        //       const xhr = new XMLHttpRequest();
+        //       xhr.open('GET', 'http://10.93.83.246:3333/ongs', true);
+        //       xhr.send()
+        //       xhr.addEventListener('load', (e) => console.log(e.target.response))
+        //       }
+        //     )
           
-        }
+        // }
         
 
 
