@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class="container text-center">
+        <h1>Get all ongs</h1>
+        <form id="formMeu" class="form-group">
+            <label for="name">Nome</label>
+            <input name="name" class="form-control" id="name" type="text" >
+            
+            <label for="email">Email</label>
+            <input class="form-control" id="email" type="text">
+            
+            <label for="whats">whats</label>
+            <input class="form-control" id="whatsapp" type="text">
+            
+            <label for="city">city</label>
+            <input class="form-control" id="city" type="text">
+            
+            <label for="uf">uf</label>
+            <input class="form-control" id="uf" type="text">
+                <button type="submit" id="go" class="btn btn-lg btn-primary">Go!</button>
+        </form>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        formEl = document.getElementById('formMeu')
+        
+        formEl.addEventListener("submit", (e) => {
+          e.preventDefault()
+          const bodie = {}
+          let inputs = document.getElementsByTagName("input") 
+          for (input of inputs) {
+            bodie[input.id] = input.value
+          }
+       
+          fetch('http://localhost:3333/ongs', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bodie)
+          })
+            .then( e => e.text())
+            .then( text => console.log(text))
+            .catch( e => console.log(e))
+        })  
+
+       
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
